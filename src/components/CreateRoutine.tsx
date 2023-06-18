@@ -3,30 +3,26 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface FormData {
-  email: string;
-  password: string;
+  routine_name: string;
 }
 
-function Form() {
+function CreateRoutine() {
   const [formData, setFormData] = useState<FormData>({
-    email: '',
-    password: '',
+    routine_name: '',
   });
-  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        'https://localhost:8080/api/users/signin',
+        'https://localhost:8080/api/routine',
         {
-          email: formData?.email,
-          password: formData?.password,
+          routine_name: formData?.routine_name,
         },
         { withCredentials: true }
       );
       if (data) {
-        navigate('/main')
+        alert('create routine sucessful!');
       }
     } catch (error) {
       console.log(error);
@@ -42,25 +38,18 @@ function Form() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>email</label>
+      <form className="routine-form" onSubmit={handleSubmit}>
+        <label>Routine name</label>
         <input
-          // type="email"
-          name="email"
+          name="routine_name"
+          placeholder=" Ex.Upper body"
           required={true}
-          value={formData.email}
+          value={formData.routine_name}
           onChange={handleChange}></input>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          required={true}
-          value={formData.password}
-          onChange={handleChange}></input>
-        <button type="submit">Sign in</button>
+        <button type="submit">Create routine</button>
       </form>
     </>
   );
 }
 
-export default Form;
+export default CreateRoutine;

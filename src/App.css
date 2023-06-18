@@ -7,6 +7,7 @@
     'topbar topbar'
     'sidebar content';
   height: 100vh;
+  position: relative;
 }
 
 .topbar-container {
@@ -20,7 +21,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2em;
+  justify-content: space-between;
+  padding: 2em;
   background-color: lightblue;
   grid-area: sidebar;
 }
@@ -51,11 +53,7 @@
 }
 
 .button-container {
-  text-align: end;
-}
-
-.button-container > button {
-  padding: 1em 2em;
+  align-self: flex-end;
 }
 
 .sub-header {
@@ -75,4 +73,33 @@
 
 .active {
   color: red;
+}
+
+/* Modal */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 4em;
+  border-radius: 5px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.routine-form {
+  display: flex;
+  flex-direction: column;
 }

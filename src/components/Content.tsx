@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import data from '../data/routinedata.json';
 
 function Content({ routine_name, total_time, workouts }) {
