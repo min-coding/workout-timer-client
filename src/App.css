@@ -1,3 +1,16 @@
+a {
+  text-decoration: none;
+}
+
+.button-container {
+  width: 100%;
+}
+
+button {
+  padding: 0.5em 1.5em;
+  font-family: 'Poppins';
+}
+
 /* Layout */
 .container {
   display: grid;
@@ -15,16 +28,6 @@
   justify-content: space-between;
   padding: 1em 2em;
   grid-area: topbar;
-}
-
-.sidebar-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2em;
-  background-color: lightblue;
-  grid-area: sidebar;
 }
 
 /* Content */
@@ -52,10 +55,6 @@
   margin: 2em 0em;
 }
 
-.button-container {
-  align-self: flex-end;
-}
-
 .sub-header {
   text-align: end;
 }
@@ -70,9 +69,35 @@
 }
 
 /* Sidebar */
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2em 0em;
+  background-color: lightblue;
+  grid-area: sidebar;
+}
+
+.sidebar-container > .button-container {
+  text-align: center;
+}
 
 .active {
   color: red;
+}
+
+.routine-list {
+  width: 100%;
+}
+
+.routine-link-container {
+  text-align: center;
+  padding: 1em;
+}
+
+.hovered {
+  background-color: green;
 }
 
 /* Modal */

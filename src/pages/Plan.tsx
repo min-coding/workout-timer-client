@@ -8,10 +8,12 @@ import Modal from '../components/Modal';
 
 function Plan() {
   const [isActive, setIsActive] = useState(0);
+  const [isHovered, setIsHovered] = useState(0);
   const [routineModal, setRoutineModal] = useState(false);
 
   function handleSidebar(routineId) {
     setIsActive(routineId);
+    setIsHovered(routineId);
   }
 
   return (
@@ -20,6 +22,8 @@ function Plan() {
       <Sidebar
         chooseRoutine={handleSidebar}
         isActive={isActive}
+        isHovered={isHovered}
+        setIsHovered={setIsHovered}
         setRoutineModal={setRoutineModal}></Sidebar>
       {data.map((routine) => {
         const { routine_name, routine_id, total_time, workouts } = routine;
