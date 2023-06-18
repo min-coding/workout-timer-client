@@ -1,0 +1,47 @@
+[
+  {
+    "routine_id": 1,
+    "routine_name": "sleepy routine1",
+    "total_time":40,
+    "workouts": [
+      {
+        "workout_id": 39,
+        "workout_name": "workout 11 baby"
+      },
+      {
+        "workout_id": 40,
+        "workout_name": "workout 12 baby"
+      }
+    ]
+  },
+  {
+    "routine_id": 2,
+    "routine_name": "sleepy routine2",
+    "total_time": 20,
+    "workouts": [
+      {
+        "workout_id": 22,
+        "workout_name": "workout 22 baby"
+      },
+      {
+        "workout_id": 40,
+        "workout_name": "workout 23 baby"
+      }
+    ]
+  },
+  {
+    "routine_id": 3,
+    "routine_name": "sleepy routine3",
+    "total_time": 20,
+    "workouts": [
+      {
+        "workout_id": 33,
+        "workout_name": "workout 33 baby"
+      },
+      {
+        "workout_id": 34,
+        "workout_name": "workout 34 baby"
+      }
+    ]
+  }
+]
