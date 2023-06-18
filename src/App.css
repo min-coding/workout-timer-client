@@ -1,42 +1,78 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Layout */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 15fr;
+  grid-template-areas:
+    'topbar topbar'
+    'sidebar content';
+  height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.topbar-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  grid-area: topbar;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2em;
+  background-color: lightblue;
+  grid-area: sidebar;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Content */
+.content-container {
+  background-color: pink;
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
 }
 
-.card {
-  padding: 2em;
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1;
+  align-items: center;
+  height: 20%;
 }
 
-.read-the-docs {
-  color: #888;
+.table-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2em 0em;
+}
+
+.button-container {
+  text-align: end;
+}
+
+.button-container > button {
+  padding: 1em 2em;
+}
+
+.sub-header {
+  text-align: end;
+}
+
+.workout-container {
+  border: 1px solid;
+  width: 80%;
+}
+
+.workout-container > p {
+  margin-left: 2em;
+}
+
+/* Sidebar */
+
+.active {
+  color: red;
 }
