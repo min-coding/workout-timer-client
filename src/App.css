@@ -151,7 +151,7 @@ button {
   gap: 2em;
 }
 
-.routine-form,.workout-form > input {
+.form-input{
   padding: 1em;
   border-radius: 10px;
   border: 0.25px solid lightgray;

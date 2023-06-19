@@ -45,6 +45,7 @@ function CreateWorkout() {
       <form className="workout-form" onSubmit={handleSubmit}>
         <label>Routine name</label>
         <input
+          className="form-input"
           name="workout_name"
           placeholder="Ex. Plank"
           required={true}
@@ -52,6 +53,7 @@ function CreateWorkout() {
           onChange={handleChange}></input>
         <label>Duration (seconds)</label>
         <input
+          className="form-input"
           type="number"
           min="0"
           max="3600"

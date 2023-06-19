@@ -9,9 +9,7 @@ import Modal from '../components/Modal';
 function Plan() {
   const [isActive, setIsActive] = useState(0);
   const [isHovered, setIsHovered] = useState(0);
-  const [routineModal, setRoutineModal] = useState(false);
-  const [workoutModal, setWorkoutModal] = useState(false);
-  const [modalForm,setModalForm] =useState('')
+  const [modalForm,setModalForm] =useState(null)
 
   function handleSidebar(routineId) {
     setIsActive(routineId);

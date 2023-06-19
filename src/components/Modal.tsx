@@ -3,6 +3,7 @@ import CreateRoutine from './CreateRoutine';
 import CreateWorkout from './CreateWorkout';
 
 function Modal({ setModalForm, modalForm }) {
+  console.log(modalForm);
   return (
     <>
       <div className="modal">

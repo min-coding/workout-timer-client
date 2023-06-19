@@ -40,13 +40,16 @@ function CreateRoutine() {
       <form className="routine-form" onSubmit={handleSubmit}>
         <label>Routine name</label>
         <input
+          className="form-input"
           name="routine_name"
           placeholder="Ex.Upper body"
           required={true}
           value={formData.routine_name}
           onChange={handleChange}></input>
         <div className="modal-btn-container">
-          <button className='modal-submit-btn' type="submit">Create routine</button>
+          <button className="modal-submit-btn" type="submit">
+            Create routine
+          </button>
         </div>
       </form>
     </>
