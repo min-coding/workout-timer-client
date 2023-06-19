@@ -37,8 +37,8 @@ function Sidebar({
           );
         })}
       </div>
-      <div className="button-container">
-        <button
+      <div>
+        <button className='routine-create-btn'
           onClick={() => {
             setRoutineModal(true);
           }}>

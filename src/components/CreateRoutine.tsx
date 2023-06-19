@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 interface FormData {
   routine_name: string;
@@ -15,7 +14,7 @@ function CreateRoutine() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        'https://localhost:8080/api/routine',
+        'https://localhost:8080/api/routines',
         {
           routine_name: formData?.routine_name,
         },
@@ -42,11 +41,13 @@ function CreateRoutine() {
         <label>Routine name</label>
         <input
           name="routine_name"
-          placeholder=" Ex.Upper body"
+          placeholder="Ex.Upper body"
           required={true}
           value={formData.routine_name}
           onChange={handleChange}></input>
-        <button type="submit">Create routine</button>
+        <div className="modal-btn-container">
+          <button className='modal-submit-btn' type="submit">Create routine</button>
+        </div>
       </form>
     </>
   );
