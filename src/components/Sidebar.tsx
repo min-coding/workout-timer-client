@@ -5,9 +5,9 @@ import data from '../data/routinedata.json';
 function Sidebar({
   chooseRoutine,
   isActive,
-  setRoutineModal,
   isHovered,
   setIsHovered,
+  setModalForm
 }) {
   //call routine lists and save it and render here , if there's no routine suggest creating routine
   return (
@@ -40,7 +40,7 @@ function Sidebar({
       <div>
         <button className='routine-create-btn'
           onClick={() => {
-            setRoutineModal(true);
+            setModalForm('routine');
           }}>
           Create new routine
         </button>

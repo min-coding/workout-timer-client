@@ -9,12 +9,24 @@ import Modal from '../components/Modal';
 function Plan() {
   const [isActive, setIsActive] = useState(0);
   const [isHovered, setIsHovered] = useState(0);
-  const [routineModal, setRoutineModal] = useState(false);
+  const [modalForm,setModalForm] =useState(null)
 
   function handleSidebar(routineId) {
     setIsActive(routineId);
     setIsHovered(routineId);
   }
+
+  /**
+   * different button, different form
+   *
+   * modalForm = ''
+   *
+   * setModalForm -> new routine
+   * setModalForm -> new workout
+   * 
+   * if modalForm===routine -> send create routine as children component
+   */
+  console.log(modalForm)
 
   return (
     <div className="container">
@@ -24,7 +36,7 @@ function Plan() {
         isActive={isActive}
         isHovered={isHovered}
         setIsHovered={setIsHovered}
-        setRoutineModal={setRoutineModal}></Sidebar>
+        setModalForm={setModalForm}></Sidebar>
       {data.map((routine) => {
         const { routine_name, routine_id, total_time, workouts } = routine;
         if (routine_id === isActive) {
@@ -33,11 +45,18 @@ function Plan() {
               key={routine_id}
               routine_name={routine_name}
               total_time={total_time}
-              workouts={workouts}></Content>
+              workouts={workouts}
+              setModalForm={setModalForm}></Content>
           );
         }
       })}
-      {routineModal ? <Modal setRoutineModal={setRoutineModal}></Modal> : ''}
+      {modalForm !== null ? (
+        <Modal setModalForm={setModalForm} modalForm={modalForm}></Modal>
+      ) : (
+        ''
+      )}
+
+      {modalForm ? <div className="modal-overlay"></div> : ''}
     </div>
   );
 }
