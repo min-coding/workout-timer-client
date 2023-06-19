@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import data from '../data/routinedata.json';
 
-function Content({ routine_name, total_time, workouts }) {
+function Content({ routine_name, total_time, workouts, setModalForm }) {
   //translate total_time into minutes seconds
   return (
     <div className="content-container">
@@ -22,7 +22,7 @@ function Content({ routine_name, total_time, workouts }) {
         })}
       </div>
       <div className="content-btn-container">
-        <button>new workout</button>
+        <button className='content-create-btn' onClick={() => setModalForm('workout')}>Create workout</button>
       </div>
     </div>
   );

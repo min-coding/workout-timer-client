@@ -137,7 +137,7 @@ button {
 
 /* Routine modal */
 
-.routine-create-btn{
+.routine-create-btn,.content-create-btn{
     background: #4d5b9e;
   padding: 0.5em 2.5em;
   border: none;
@@ -145,14 +145,15 @@ button {
   border-radius: 15px;
 }
 
-.routine-form {
+.routine-form,.workout-form {
   display: flex;
   flex-direction: column;
   gap: 2em;
 }
 
-.routine-form > input {
+.routine-form,.workout-form > input {
   padding: 1em;
   border-radius: 10px;
   border: 0.25px solid lightgray;
 }
+
