@@ -8,7 +8,7 @@ function Content({ routine_name, total_time, workouts, setModalForm }) {
     <div className="content-container">
       <div className="content-header">
         <h1>{routine_name}</h1>
-        <div>The button</div>
+        <div>The timer button</div>
       </div>
       <h2 className="content-sub-header">Total time {total_time} minutes</h2>
       <div className="content-table-container">
@@ -29,25 +29,3 @@ function Content({ routine_name, total_time, workouts, setModalForm }) {
 }
 
 export default Content;
-
-/**
- * {data.map((routine) => {
-        const { routine_id, routine_name, total_time, workouts } = routine;
-        if (routine_id === 1) {
-          return (
-            <>
-              <p>name : {routine_name}</p>
-              <p>Total time: {total_time}</p>
-              {workouts.map((workout) => {
-                return (
-                  <>
-                    <p>{workout.workout_name}</p>
-                    <p>{workout.workout_id}</p>
-                  </>
-                );
-              })}
-            </>
-          );
-        }
-      })}
- */

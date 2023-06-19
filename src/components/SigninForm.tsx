@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../App';
 
 interface FormData {
   email: string;
@@ -11,7 +12,8 @@ function SigninForm() {
   const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
-  })
+  });
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -25,8 +27,9 @@ function SigninForm() {
         },
         { withCredentials: true }
       );
+      setUser(data);
       if (data) {
-        navigate('/plan')
+        navigate('/plan');
       }
     } catch (error) {
       console.log(error);
@@ -45,7 +48,7 @@ function SigninForm() {
       <form onSubmit={handleSubmit}>
         <label>email</label>
         <input
-          // type="email"
+          type="email"
           name="email"
           required={true}
           value={formData.email}

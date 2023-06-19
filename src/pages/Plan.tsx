@@ -5,28 +5,17 @@ import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import Content from '../components/Content';
 import Modal from '../components/Modal';
+import axios from 'axios';
 
 function Plan() {
   const [isActive, setIsActive] = useState(0);
   const [isHovered, setIsHovered] = useState(0);
   const [modalForm,setModalForm] =useState(null)
-
+  
   function handleSidebar(routineId) {
-    setIsActive(routineId);
-    setIsHovered(routineId);
+    setIsActive(routineId)
+    setIsHovered(routineId)
   }
-
-  /**
-   * different button, different form
-   *
-   * modalForm = ''
-   *
-   * setModalForm -> new routine
-   * setModalForm -> new workout
-   * 
-   * if modalForm===routine -> send create routine as children component
-   */
-  console.log(modalForm)
 
   return (
     <div className="container">
@@ -55,14 +44,9 @@ function Plan() {
       ) : (
         ''
       )}
-
       {modalForm ? <div className="modal-overlay"></div> : ''}
     </div>
   );
 }
 
 export default Plan;
-/**
- * Always fetch user info and routine 1 as a default.
- *
- */

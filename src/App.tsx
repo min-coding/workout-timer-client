@@ -5,9 +5,12 @@ import Home from './pages/Home';
 import Plan from './pages/Plan';
 import Profile from './pages/Profile';
 
+const UserContext = createContext({ user: null, setUser: (userInfo) => {} })
+
 function App() {
+  const [user, setUser] = useState(null)
   return (
-    // <UserContext.Provider value={user}>
+    <UserContext.Provider value={{ user, setUser }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home></Home>} />
@@ -17,8 +20,8 @@ function App() {
           <Route path="/profile" element={<Profile></Profile>} />
         </Routes>
       </BrowserRouter>
-    // </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
-
+export { UserContext };
 export default App;
