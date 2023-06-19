@@ -11,7 +11,7 @@ function SigninForm() {
   const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
-  });
+  })
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -26,7 +26,7 @@ function SigninForm() {
         { withCredentials: true }
       );
       if (data) {
-        navigate('/main')
+        navigate('/plan')
       }
     } catch (error) {
       console.log(error);

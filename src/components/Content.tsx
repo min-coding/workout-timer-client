@@ -10,18 +10,18 @@ function Content({ routine_name, total_time, workouts }) {
         <h1>{routine_name}</h1>
         <div>The button</div>
       </div>
-      <h2 className="sub-header">Total time {total_time} minutes</h2>
-      <div className="table-container">
+      <h2 className="content-sub-header">Total time {total_time} minutes</h2>
+      <div className="content-table-container">
         {workouts.map((workout) => {
           const { workout_id, workout_name } = workout;
           return (
-            <div className="workout-container" key={workout_id}>
+            <div className="content-workout-container" key={workout_id}>
               <p>{workout_name}</p>
             </div>
           );
         })}
       </div>
-      <div className="button-container">
+      <div className="content-btn-container">
         <button>new workout</button>
       </div>
     </div>

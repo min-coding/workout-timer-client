@@ -1,13 +1,12 @@
 import React from 'react';
 import CreateRoutine from './CreateRoutine';
 
-//get children component as a create routine and create workout
 function Modal({ setRoutineModal }) {
   return (
     <>
       <div className="modal">
-        <div className="button-container">
-          <button onClick={() => setRoutineModal(false)}>X</button>
+        <div className="modal-btn-container">
+          <button className='modal-close-btn' onClick={() => setRoutineModal(false)}>X</button>
         </div>
         <CreateRoutine></CreateRoutine>
       </div>
