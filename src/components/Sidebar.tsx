@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { Link } from 'react-router-dom';
 import data from '../data/routinedata.json';
+import { RoutineContext } from '../App';
 
 function Sidebar({
   chooseRoutine,
@@ -9,11 +10,13 @@ function Sidebar({
   setIsHovered,
   setModalForm
 }) {
+
   //call routine lists and save it and render here , if there's no routine suggest creating routine
+  const { routines, setRoutines } = useContext(RoutineContext);
   return (
     <div className="sidebar-container">
       <div className="routine-list">
-        {data.map((routine) => {
+        {routines.map((routine) => {
           const { routine_id, routine_name } = routine;
           return (
             <div

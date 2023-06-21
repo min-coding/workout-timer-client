@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { RoutineContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 
 interface FormData {
   routine_name: string;
@@ -9,6 +11,8 @@ function CreateRoutine() {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
   });
+  const { routines, setRoutines } = useContext(RoutineContext);
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,11 +27,13 @@ function CreateRoutine() {
       if (data) {
         alert('create routine sucessful!');
       }
+      //update routine
+      setRoutines((prev) => [...prev, data]);
     } catch (error) {
       console.log(error);
     }
   }
-
+  console.log(routines);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
