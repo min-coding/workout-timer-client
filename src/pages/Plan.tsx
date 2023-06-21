@@ -7,13 +7,14 @@ import Content from '../components/Content';
 import Modal from '../components/Modal';
 import axios from 'axios';
 import { RoutineContext } from '../App';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 function Plan() {
   const { routines, setRoutines } = useContext(RoutineContext);
   const [isActive, setIsActive] = useState(0);
   const [isHovered, setIsHovered] = useState(0);
   const [modalForm, setModalForm] = useState(null);
+  const { routineId } = useParams();
 
   useEffect(() => {
     async function fetchRoutines() {
@@ -22,16 +23,26 @@ function Plan() {
           'https://localhost:8080/api/routines/',
           { withCredentials: true }
         );
-        if (data.length !== 0) {
-          setIsActive(data[0].routine_id);
-        }
+        setModalForm(null);
         setRoutines(data);
       } catch (error) {
         console.log(error);
       }
     }
     fetchRoutines();
-  }, []);
+  }, [routineId]);
+  console.log(routines);
+  /**fetch routine runs when first render, after update form, we navigate back to main page (update routineId)
+   * so the page rerender and show results. In this case, that means everytime after we setRoutine,
+   * we need to navigate back to main, to render updated state.
+   *
+   */
+
+  // useEffect(() => {
+  //   if (routines.length > 0) {
+  //     setIsActive(routines[0].routine_id);
+  //   }
+  // }, []);
 
   function handleSidebar(routineId) {
     setIsActive(routineId);
@@ -65,7 +76,10 @@ function Plan() {
         <h1>You have no routine yet. Please create your routine!</h1>
       )}
       {modalForm && (
-        <Modal setModalForm={setModalForm} modalForm={modalForm}></Modal>
+        <Modal
+          setModalForm={setModalForm}
+          // chooseRoutine={handleSidebar}
+          modalForm={modalForm}></Modal>
       )}
       {modalForm && <div className="modal-overlay"></div>}
     </div>

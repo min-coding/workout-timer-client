@@ -14,10 +14,11 @@ function Content({ routine_name, total_time, workouts, setModalForm }) {
       <div className="content-table-container">
         {workouts &&
           workouts.map((workout) => {
-            const { workout_id, workout_name } = workout;
+            const { workout_id, workout_name, duration } = workout;
             return (
               <div className="content-workout-container" key={workout_id}>
-                <p>{workout_name}</p>
+                <div>{workout_name}</div>
+                <div>{duration}</div>
               </div>
             );
           })}

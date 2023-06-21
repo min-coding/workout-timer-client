@@ -14,9 +14,9 @@ function Modal({ setModalForm, modalForm }) {
           </button>
         </div>
         {modalForm === 'routine' ? (
-          <CreateRoutine></CreateRoutine>
+          <CreateRoutine ></CreateRoutine>
         ) : (
-          <CreateWorkout></CreateWorkout>
+          <CreateWorkout ></CreateWorkout>
         )}
       </div>
     </>

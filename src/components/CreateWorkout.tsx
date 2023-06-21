@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { RoutineContext } from '../App';
 
 interface FormData {
   workout_name: string;
@@ -13,20 +14,34 @@ function CreateWorkout() {
     duration: 0,
   });
   const { routineId } = useParams();
+  const navigate = useNavigate();
+  const { routines, setRoutines } = useContext(RoutineContext);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `https://localhost:8080/api/routines/${routineId}`,
+        `https://localhost:8080/api/workouts/${routineId}`,
         {
           workout_name: formData?.workout_name,
           duration: formData?.duration,
         },
         { withCredentials: true }
-      )
+      );
       if (data) {
         alert('create workout sucessful!');
+        setRoutines((prev) =>
+          prev.map((routine) => {
+            if (routine.routine_id === routineId) {
+              return {
+                ...routine,
+                workouts: [...routine.workouts, data],
+              };
+            }
+            return routine;
+          })
+        );
+        navigate('/plan');
       }
     } catch (error) {
       console.log(error);
