@@ -1,4 +1,4 @@
-import { useState,createContext,useEffect} from 'react';
+import { useState, createContext, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
@@ -6,13 +6,13 @@ import Plan from './pages/Plan';
 import Profile from './pages/Profile';
 import axios from 'axios';
 
-export const RoutineContext = createContext(null)
+export const RoutineContext = createContext();
 
 function App() {
   const [routines, setRoutines] = useState([]);
-  
+
   return (
-    <RoutineContext.Provider value={{routines,setRoutines}}>
+    <RoutineContext.Provider value={{ routines, setRoutines }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home></Home>} />
@@ -25,6 +25,5 @@ function App() {
     </RoutineContext.Provider>
   );
 }
-
 
 export default App;
