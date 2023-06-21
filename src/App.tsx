@@ -1,16 +1,18 @@
-import { useState,createContext} from 'react';
+import { useState,createContext,useEffect} from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Plan from './pages/Plan';
 import Profile from './pages/Profile';
+import axios from 'axios';
 
-const UserContext = createContext({ user: null, setUser: (userInfo) => {} })
+export const RoutineContext = createContext(null)
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [routines, setRoutines] = useState([]);
+  
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <RoutineContext.Provider value={{routines,setRoutines}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home></Home>} />
@@ -20,8 +22,9 @@ function App() {
           <Route path="/profile" element={<Profile></Profile>} />
         </Routes>
       </BrowserRouter>
-    </UserContext.Provider>
+    </RoutineContext.Provider>
   );
 }
-export { UserContext };
+
+
 export default App;

@@ -2,8 +2,7 @@ import React from 'react';
 import CreateRoutine from './CreateRoutine';
 import CreateWorkout from './CreateWorkout';
 
-function Modal({ setModalForm, modalForm }) {
-  console.log(modalForm);
+function Modal({ setModalForm, modalForm}) {
   return (
     <>
       <div className="modal">

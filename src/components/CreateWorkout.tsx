@@ -24,7 +24,7 @@ function CreateWorkout() {
           duration: formData?.duration,
         },
         { withCredentials: true }
-      );
+      )
       if (data) {
         alert('create workout sucessful!');
       }

@@ -22,10 +22,24 @@ function Content({ routine_name, total_time, workouts, setModalForm }) {
         })}
       </div>
       <div className="content-btn-container">
-        <button className='content-create-btn' onClick={() => setModalForm('workout')}>Create workout</button>
+        <button
+          className="content-create-btn"
+          onClick={() => setModalForm('workout')}>
+          Create workout
+        </button>
       </div>
     </div>
   );
 }
 
 export default Content;
+/**
+ * {workouts.length > 0?(workouts.map((workout) => {
+          const { workout_id, workout_name } = workout;
+          return (
+            <div className="content-workout-container" key={workout_id}>
+              <p>{workout_name}</p>
+            </div>
+          );
+        })):<h1>You have no workout!</h1> }
+ */
