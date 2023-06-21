@@ -35,7 +35,7 @@ function Plan() {
 
   function handleSidebar(routineId) {
     setIsActive(routineId);
-    setIsHovered(routineId);
+    // setIsHovered(routineId);
   }
 
   return (

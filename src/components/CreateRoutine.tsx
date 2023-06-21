@@ -29,11 +29,12 @@ function CreateRoutine() {
       }
       //update routine
       setRoutines((prev) => [...prev, data]);
+      navigate(`/plan/`);
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(routines);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,
