@@ -22,7 +22,7 @@ function Sidebar({
               key={routine_id}
               to={`/plan/${routine_id}`}
               className={isActive === routine.routine_id ? 'active' : ''}>
-              <div
+              <div key={routine_id}
                 className={`routine-link-container ${
                   isHovered === routine.routine_id ? 'hovered' : ''
                 }`}

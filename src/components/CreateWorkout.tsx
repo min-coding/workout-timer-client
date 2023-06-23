@@ -8,7 +8,7 @@ interface FormData {
   duration: number;
 }
 
-function CreateWorkout() {
+function CreateWorkout({ setModalForm }) {
   const [formData, setFormData] = useState<FormData>({
     workout_name: '',
     duration: 0,
@@ -41,7 +41,8 @@ function CreateWorkout() {
             return routine;
           })
         );
-        navigate('/plan');
+        setModalForm(null);
+        navigate(`/plan`);
       }
     } catch (error) {
       console.log(error);

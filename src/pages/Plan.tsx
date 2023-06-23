@@ -23,7 +23,6 @@ function Plan() {
           'https://localhost:8080/api/routines/',
           { withCredentials: true }
         );
-        setModalForm(null);
         setRoutines(data);
       } catch (error) {
         console.log(error);
@@ -31,7 +30,6 @@ function Plan() {
     }
     fetchRoutines();
   }, [routineId]);
-  console.log(routines);
   /**fetch routine runs when first render, after update form, we navigate back to main page (update routineId)
    * so the page rerender and show results. In this case, that means everytime after we setRoutine,
    * we need to navigate back to main, to render updated state.
@@ -65,6 +63,7 @@ function Plan() {
             return (
               <Content
                 key={routine_id}
+                routine_id={routine_id}
                 routine_name={routine_name}
                 total_time={total_time}
                 workouts={workouts}
