@@ -14,7 +14,7 @@ function Plan() {
   const [isActive, setIsActive] = useState(0);
   const [isHovered, setIsHovered] = useState(0);
   const [modalForm, setModalForm] = useState(null);
-  const { routineId } = useParams();
+  const { routineId, workoutId } = useParams();
 
   useEffect(() => {
     async function fetchRoutines() {
@@ -29,7 +29,7 @@ function Plan() {
       }
     }
     fetchRoutines();
-  }, [routineId]);
+  }, [routineId, workoutId]);
   /**fetch routine runs when first render, after update form, we navigate back to main page (update routineId)
    * so the page rerender and show results. In this case, that means everytime after we setRoutine,
    * we need to navigate back to main for useEffect to automatically updated and render updated state.

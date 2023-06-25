@@ -10,7 +10,7 @@ function Topbar({ setModalForm }) {
       <div
         className="profile-setting"
         onClick={() => {
-          setModalForm('profile');
+          setModalForm('editProfile');
           navigate(`/profile/${user.user_id}`);
         }}>
         <svg
