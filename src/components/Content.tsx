@@ -45,8 +45,8 @@ function Content({
           }
           return routine;
         });
-
-      await  setRoutines(updatedRoutines);
+        //since when we delete we're not changing routes, the useEffect set routine wouldn't run to refresh updated state, so we set it here.
+        await setRoutines(updatedRoutines);
       }
     } catch (error) {
       console.log(error);
@@ -139,11 +139,3 @@ function Content({
 }
 
 export default Content;
-
-/**
- * 1. get the duration of that workout before delete
- * 2. save it
- * 3. updateTime = routine.total_time - thatWorkoutDuration
- *
- * or call workouts again to update?
- */

@@ -27,9 +27,8 @@ function CreateRoutine({ setModalForm }) {
       if (data) {
         alert('create routine sucessful!');
       }
-      //update routine
-      setRoutines((prev) => [...prev, data]);
       setModalForm(null);
+      //update routine by navigate
       navigate(`/plan/`);
     } catch (error) {
       console.log(error);

@@ -30,18 +30,8 @@ function CreateWorkout({ setModalForm }) {
       );
       if (data) {
         alert('create workout sucessful!');
-        setRoutines((prev) =>
-          prev.map((routine) => {
-            if (routine.routine_id === routineId) {
-              return {
-                ...routine,
-                workouts: [...routine.workouts, data],
-              };
-            }
-            return routine;
-          })
-        );
         setModalForm(null);
+        //update routine by navigate
         navigate(`/plan`);
       }
     } catch (error) {
