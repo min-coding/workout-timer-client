@@ -18,11 +18,17 @@ button {
   position: relative;
 }
 
+/* Topbar , Profile */
+
 .topbar-container {
   display: flex;
   justify-content: space-between;
   padding: 1em 2em;
   grid-area: topbar;
+  align-items: center;
+}
+
+.profile-setting {
 }
 
 /* Content */

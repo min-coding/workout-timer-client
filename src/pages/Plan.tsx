@@ -33,12 +33,11 @@ function Plan() {
   /**fetch routine runs when first render, after update form, we navigate back to main page (update routineId)
    * so the page rerender and show results. In this case, that means everytime after we setRoutine,
    * we need to navigate back to main for useEffect to automatically updated and render updated state.
-   * the state itself is already updated in the component, basically we use it to 
+   * the state itself is already updated in the component, basically we use it to
    * 1. fetch initial data
    * 2. automatically update state, so it doesnt have to wait for next render
    *
    */
-
 
   function handleSidebar(routineId) {
     setIsActive(routineId);
@@ -47,7 +46,7 @@ function Plan() {
 
   return (
     <div className="container">
-      <Topbar></Topbar>
+      <Topbar setModalForm={setModalForm}></Topbar>
       <Sidebar
         chooseRoutine={handleSidebar}
         isActive={isActive}

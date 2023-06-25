@@ -18,8 +18,8 @@ function App() {
           <Route path="/" element={<Home></Home>} />
           <Route path="/plan" element={<Plan></Plan>} />
           <Route path="/plan/:routineId" element={<Plan></Plan>} />
-          <Route path="/signup" element={<Profile></Profile>} />
-          <Route path="/profile" element={<Profile></Profile>} />
+          <Route path="/profile/:userId" element={<Plan></Plan>} />
+          {/* <Route path="/signup" element={<Profile></Profile>} /> */}
         </Routes>
       </BrowserRouter>
     </RoutineContext.Provider>
