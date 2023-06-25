@@ -7,7 +7,7 @@ interface FormData {
   routine_name: string;
 }
 
-function CreateRoutine() {
+function CreateRoutine({ setModalForm }) {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
   });
@@ -27,13 +27,14 @@ function CreateRoutine() {
       if (data) {
         alert('create routine sucessful!');
       }
-      //update routine
-      setRoutines((prev) => [...prev, data]);
+      setModalForm(null);
+      //update routine by navigate
+      navigate(`/plan/`);
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(routines);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormData({
       ...formData,

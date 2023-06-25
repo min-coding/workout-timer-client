@@ -2,7 +2,7 @@ import React from 'react';
 import CreateRoutine from './CreateRoutine';
 import CreateWorkout from './CreateWorkout';
 
-function Modal({ setModalForm, modalForm}) {
+function Modal({ setModalForm, modalForm }) {
   return (
     <>
       <div className="modal">
@@ -14,9 +14,9 @@ function Modal({ setModalForm, modalForm}) {
           </button>
         </div>
         {modalForm === 'routine' ? (
-          <CreateRoutine></CreateRoutine>
+          <CreateRoutine setModalForm={setModalForm}></CreateRoutine>
         ) : (
-          <CreateWorkout></CreateWorkout>
+          <CreateWorkout setModalForm={setModalForm}></CreateWorkout>
         )}
       </div>
     </>
@@ -24,25 +24,3 @@ function Modal({ setModalForm, modalForm}) {
 }
 
 export default Modal;
-/**
- * Routine
- *  <>
-      <div className="modal">
-        <div className="modal-btn-container">
-          <button className='modal-close-btn' onClick={() => setRoutineModal(false)}>X</button>
-        </div>
-        <CreateRoutine></CreateRoutine>
-      </div>
-    </>
- * 
-    Workout
-
-    <>
-      <div className="modal">
-        <div className="modal-btn-container">
-          <button className='modal-close-btn' onClick={() => setWorkoutModal(false)}>X</button>
-        </div>
-        <CreateWorkout></CreateWorkout>
-      </div>
-    </>
- */

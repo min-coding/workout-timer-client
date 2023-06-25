@@ -57,6 +57,9 @@ button {
 .content-workout-container {
   border: 1px solid;
   width: 80%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
 }
 
 .content-workout-container > p {
@@ -121,7 +124,6 @@ button {
   z-index: 0;
 }
 
-
 .modal-btn-container {
   text-align: end;
 }
@@ -137,23 +139,24 @@ button {
 
 /* Routine modal */
 
-.routine-create-btn,.content-create-btn{
-    background: #4d5b9e;
+.routine-create-btn,
+.content-create-btn {
+  background: #4d5b9e;
   padding: 0.5em 2.5em;
   border: none;
   color: white;
   border-radius: 15px;
 }
 
-.routine-form,.workout-form {
+.routine-form,
+.workout-form {
   display: flex;
   flex-direction: column;
   gap: 2em;
 }
 
-.form-input{
+.form-input {
   padding: 1em;
   border-radius: 10px;
   border: 0.25px solid lightgray;
 }
-
