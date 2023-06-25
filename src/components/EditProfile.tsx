@@ -54,8 +54,7 @@ function EditProfile({ setModalForm }) {
         <input
           className="form-input"
           name="username"
-          placeholder="Enter your username"
-          // required={true}
+          placeholder="Update your username"
           value={formData.username}
           onChange={handleChange}></input>
         <label>Password</label>
@@ -63,8 +62,8 @@ function EditProfile({ setModalForm }) {
           className="form-input"
           type="text"
           name="password"
-          // required={true}
           value={formData.password}
+          placeholder="Update your password"
           onChange={handleChange}></input>
         <div className="modal-btn-container">
           <button className="modal-submit-btn" type="submit">
