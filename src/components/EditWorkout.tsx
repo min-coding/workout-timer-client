@@ -54,7 +54,6 @@ function EditWorkout({ setModalForm }) {
           className="form-input"
           name="workout_name"
           placeholder="Ex. Plank"
-          required={true}
           value={formData.workout_name}
           onChange={handleChange}></input>
         <label>Duration (seconds)</label>
@@ -64,7 +63,6 @@ function EditWorkout({ setModalForm }) {
           min="0"
           max="3600"
           name="duration"
-          required={true}
           value={formData.duration}
           onChange={handleChange}></input>
         <div className="modal-btn-container">

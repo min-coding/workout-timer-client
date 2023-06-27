@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import trashIcon from '../assets/delete-svgrepo-com.svg';
 import editIcon from '../assets/edit-svgrepo-com.svg';
+import Timer from './Timer';
 
 function Content({
   routine_name,
@@ -15,6 +16,10 @@ function Content({
 }) {
   //translate total_time into minutes seconds
   const { routines, setRoutines } = useContext(RoutineContext);
+
+  //workout duration array
+  const durationsArray = workouts.map((workout) => workout.duration);
+
   const navigate = useNavigate();
 
   async function deleteWorkout(workoutId) {
@@ -77,20 +82,23 @@ function Content({
   return (
     <div className="content-container">
       <div className="content-header">
-        <h1>{routine_name}</h1>
-        <button
-          className="icon-button"
-          onClick={() => deleteRoutine(routine_id)}>
-          <img src={trashIcon} alt="deleteIcon"></img>
-        </button>
-        <button
-          className="icon-button"
-          onClick={() => {
-            setModalForm('editRoutine');
-            navigate(`/plan/${routine_id}`);
-          }}>
-          <img src={editIcon} alt="editIcon"></img>
-        </button>
+        <div>
+          <h3>{routine_name}</h3>
+          <button
+            className="icon-button"
+            onClick={() => deleteRoutine(routine_id)}>
+            <img src={trashIcon} alt="deleteIcon"></img>
+          </button>
+          <button
+            className="icon-button"
+            onClick={() => {
+              setModalForm('editRoutine');
+              navigate(`/plan/${routine_id}`);
+            }}>
+            <img src={editIcon} alt="editIcon"></img>
+          </button>
+        </div>
+        <Timer total_time={total_time} durationsArray={durationsArray}></Timer>
         <div>The timer button</div>
       </div>
 

@@ -49,7 +49,7 @@ function CreateWorkout({ setModalForm }) {
   return (
     <>
       <form className="workout-form" onSubmit={handleSubmit}>
-        <label>Routine name</label>
+        <label>Workout Name</label>
         <input
           className="form-input"
           name="workout_name"
