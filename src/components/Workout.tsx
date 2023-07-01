@@ -70,7 +70,7 @@ function Workout({
         </button>
       </div>
       <div>{workout_name}</div>
-      <div>{duration}</div>
+      <div>{duration / 10} seconds</div>
     </div>
   );
 }

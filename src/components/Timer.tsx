@@ -88,7 +88,10 @@ function Timer({ durationsArray, workoutNameArray }) {
 
   return (
     <>
-      <h2>Remaining Time: {time} seconds</h2>
+      <div className="timer-container">
+        <p>Remaining Time</p>
+        <h1>{time / 10}</h1>
+      </div>
       {durationsArray.length === 0 && <button disabled>Start</button>}
       {!timerStarted &&
         time === durationsArray[0] &&

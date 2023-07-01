@@ -24,7 +24,7 @@ function CreateWorkout({ setModalForm }) {
         `https://localhost:8080/api/workouts/${routineId}`,
         {
           workout_name: formData?.workout_name,
-          duration: formData?.duration,
+          duration: formData?.duration * 10,
         },
         { withCredentials: true }
       );

@@ -69,7 +69,7 @@ function Routine({
         />
       </div>
 
-      <p className="content-sub-header">Total time {total_time} minutes</p>
+      <p className="content-sub-header">Total time {total_time / 10} seconds</p>
       <div className="content-table-container">
         {workouts &&
           workouts.map((workout) => (

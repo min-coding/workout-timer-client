@@ -24,7 +24,7 @@ function EditWorkout({ setModalForm }) {
         `https://localhost:8080/api/workouts/${workoutId}`,
         {
           workout_name: formData?.workout_name,
-          duration: formData?.duration,
+          duration: formData?.duration * 10,
         },
         { withCredentials: true }
       );
