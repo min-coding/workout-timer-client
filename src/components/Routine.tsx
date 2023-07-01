@@ -20,6 +20,7 @@ function Routine({
 
   //workout duration array
   const durationsArray = workouts.map((workout) => workout.duration);
+  const workoutNameArray = workouts.map((workout) => workout.workout_name);
 
   const navigate = useNavigate();
 
@@ -62,7 +63,10 @@ function Routine({
           </button>
         </div>
 
-        <Timer durationsArray={durationsArray} />
+        <Timer
+          durationsArray={durationsArray}
+          workoutNameArray={workoutNameArray}
+        />
       </div>
 
       <p className="content-sub-header">Total time {total_time} minutes</p>

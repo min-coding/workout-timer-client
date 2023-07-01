@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function Timer({ durationsArray }) {
+function Timer({ durationsArray, workoutNameArray }) {
   const [currentWorkoutIndex, setCurrentWorkoutIndex] = useState(0);
   const [time, setTime] = useState(
     durationsArray.length > 0 ? durationsArray[0] : 0
@@ -17,14 +17,13 @@ function Timer({ durationsArray }) {
         setTime((prev) => prev - 10);
       }, 1000);
 
-      if (time - 10 === 0) speakNextWorkout('Next Workout');
-
       if (time === 0) {
         clearInterval(interval);
 
         if (currentWorkoutIndex < durationsArray.length - 1) {
           setCurrentWorkoutIndex((prevIndex) => prevIndex + 1);
           setNextWorkoutIndex((prevIndex) => prevIndex + 1);
+          speakNextWorkout(workoutNameArray[nextWorkoutIndex]);
           setTime(durationsArray[nextWorkoutIndex]);
         } else {
           setTimerStarted(false);
@@ -45,6 +44,7 @@ function Timer({ durationsArray }) {
 
   function handleStart() {
     if (!timerStarted) {
+      speakNextWorkout(workoutNameArray[0]);
       setTime(durationsArray[currentWorkoutIndex]);
       setTimerStarted(true);
       setFirstStarted(true);
@@ -75,9 +75,9 @@ function Timer({ durationsArray }) {
 
   function speakNextWorkout(text) {
     const message = new SpeechSynthesisUtterance(text);
-    message.volume = 1;
-    message.rate = 1;
-    message.pitch = 5;
+    message.volume = 5;
+    message.rate = 0.75;
+    message.pitch = -20;
 
     // Optional: Specify the language and voice
     message.lang = 'en-US';
