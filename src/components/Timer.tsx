@@ -8,6 +8,8 @@ function Timer({ durationsArray, workoutNameArray }) {
   const [nextWorkoutIndex, setNextWorkoutIndex] = useState(1);
   const [timerStarted, setTimerStarted] = useState(false);
   const [firstStarted, setFirstStarted] = useState(false);
+  const [minute, setMinute] = useState(0);
+  const [second, setSecond] = useState(0);
 
   useEffect(() => {
     let interval = null;
@@ -15,6 +17,13 @@ function Timer({ durationsArray, workoutNameArray }) {
     if (timerStarted) {
       interval = setInterval(() => {
         setTime((prev) => prev - 10);
+        if (time / 10 >= 60) {
+          setMinute(Math.floor(time / 10 / 60));
+          setSecond((time / 10) % 60);
+        } else if (time / 10 < 60 && time !== 0) {
+          setMinute(0);
+          setSecond(time / 10);
+        }
       }, 1000);
 
       if (time === 0) {
@@ -27,8 +36,9 @@ function Timer({ durationsArray, workoutNameArray }) {
           setTime(durationsArray[nextWorkoutIndex]);
         } else {
           setTimerStarted(false);
+          setSecond((prev) => prev - 1);
           speakNextWorkout('End of the Workout!');
-          console.log(`All done!!!`);
+          console.log(`All done!`);
         }
       }
     }
@@ -89,8 +99,11 @@ function Timer({ durationsArray, workoutNameArray }) {
   return (
     <>
       <div className="timer-container">
-        <p>Remaining Time</p>
-        <h1>{time / 10}</h1>
+        {firstStarted && (
+          <h2>
+            {minute} min {second} sec
+          </h2>
+        )}
       </div>
       {durationsArray.length === 0 && <button disabled>Start</button>}
       {!timerStarted &&
