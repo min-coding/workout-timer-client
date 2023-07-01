@@ -3,11 +3,11 @@ import Form from '../components/SigninForm';
 import data from '../data/routinedata.json';
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
-import Content from '../components/Content';
 import Modal from '../components/Modal';
 import axios from 'axios';
 import { RoutineContext } from '../App';
 import { useLocation, useParams } from 'react-router-dom';
+import Routine from '../components/Routine';
 
 function Plan() {
   const { routines, setRoutines } = useContext(RoutineContext);
@@ -58,13 +58,13 @@ function Plan() {
           const { routine_name, routine_id, total_time, workouts } = routine;
           if (routine_id === isActive) {
             return (
-              <Content
+              <Routine
                 key={routine_id}
                 routine_id={routine_id}
                 routine_name={routine_name}
                 total_time={total_time}
                 workouts={workouts}
-                setModalForm={setModalForm}></Content>
+                setModalForm={setModalForm}></Routine>
             );
           }
         })
