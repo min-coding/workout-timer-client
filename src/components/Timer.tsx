@@ -1,63 +1,110 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function Timer({
-  duration,
-  index,
-  currentTimerIndex,
-  setCurrentTimerIndex,
-  workoutCount,
-  durationsArray,
-}) {
-  //keep interval id in ref, bc it's not needed for rendering. every rerender by time, it sill persists
-  const intervalRef = useRef(null);
+function Timer({ durationsArray }) {
+  const [currentWorkoutIndex, setCurrentWorkoutIndex] = useState(0);
+  const [time, setTime] = useState(
+    durationsArray.length > 0 ? durationsArray[0] : 0
+  );
+  const [nextWorkoutIndex, setNextWorkoutIndex] = useState(1);
+  const [timerStarted, setTimerStarted] = useState(false);
+  const [firstStarted, setFirstStarted] = useState(false);
 
-  //state to render time counting down
-  const [time, setTime] = useState(duration);
+  useEffect(() => {
+    let interval = null;
 
-  function startTimer() {
-    clearInterval(intervalRef.current);
+    if (timerStarted) {
+      interval = setInterval(() => {
+        setTime((prev) => prev - 10);
+      }, 1000);
 
-    //countdown by setting new Time every 1 second
-    intervalRef.current = setInterval(() => {
-      if (time > 0) {
-        setTime((prev) => {
-          if (prev > 10) return prev - 10;
-          else if (prev <= 10) {
-            clearInterval(intervalRef.current);
-            console.log('Times up');
-            return 0;
-          }
-        });
+      if (time - 10 === 0) speakNextWorkout('Next Workout');
+
+      if (time === 0) {
+        clearInterval(interval);
+
+        if (currentWorkoutIndex < durationsArray.length - 1) {
+          setCurrentWorkoutIndex((prevIndex) => prevIndex + 1);
+          setNextWorkoutIndex((prevIndex) => prevIndex + 1);
+          setTime(durationsArray[nextWorkoutIndex]);
+        } else {
+          setTimerStarted(false);
+          speakNextWorkout('End of the Workout!');
+          console.log(`All done!!!`);
+        }
       }
-    }, 1000);
-  }
+    }
+
+    return () => clearInterval(interval);
+  }, [
+    currentWorkoutIndex,
+    time,
+    durationsArray,
+    nextWorkoutIndex,
+    timerStarted,
+  ]);
 
   function handleStart() {
-    console.log('Start!');
-    startTimer();
+    if (!timerStarted) {
+      setTime(durationsArray[currentWorkoutIndex]);
+      setTimerStarted(true);
+      setFirstStarted(true);
+    }
   }
-
   function handlePause() {
-    console.log('Pause!');
-    clearInterval(intervalRef.current);
+    if (timerStarted) {
+      setTimerStarted(false);
+    }
   }
 
+  function handleResume() {
+    if (!timerStarted) {
+      setTimerStarted(true);
+    }
+  }
+
+  //works only end of routine
   function handleReset() {
-    console.log('Reset to 1st interval!!');
-    clearInterval(intervalRef.current);
-    setTime(duration);
+    if (!timerStarted) {
+      setTime(durationsArray[0]);
+      setCurrentWorkoutIndex(0);
+      setNextWorkoutIndex(1);
+      setTimerStarted(false);
+      setFirstStarted(false);
+    }
+  }
+
+  function speakNextWorkout(text) {
+    const message = new SpeechSynthesisUtterance(text);
+    message.volume = 1;
+    message.rate = 1;
+    message.pitch = 5;
+
+    // Optional: Specify the language and voice
+    message.lang = 'en-US';
+    message.voice = speechSynthesis.getVoices()[0];
+
+    speechSynthesis.speak(message);
   }
 
   return (
-    <div>
-      <h1>{time}</h1>
+    <>
+      <h2>Remaining Time: {time} seconds</h2>
+      {durationsArray.length === 0 && <button disabled>Start</button>}
+      {!timerStarted &&
+        time === durationsArray[0] &&
+        currentWorkoutIndex === 0 &&
+        !firstStarted && <button onClick={handleStart}>Start</button>}
+      {timerStarted && time > 0 && <button onClick={handlePause}>Pause</button>}
 
-      <button onClick={handleStart}>Start</button>
-
-      <button onClick={handlePause}>Pause</button>
-
-      <button onClick={handleReset}>Reset</button>
-    </div>
+      {!timerStarted && time > 0 && firstStarted && (
+        <button onClick={handleResume}>Resume</button>
+      )}
+      {!timerStarted &&
+        time === 0 &&
+        currentWorkoutIndex === durationsArray.length - 1 && (
+          <button onClick={handleReset}>Reset</button>
+        )}
+    </>
   );
 }
 
