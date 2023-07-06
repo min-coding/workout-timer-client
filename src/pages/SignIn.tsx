@@ -1,16 +1,14 @@
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface FormData {
   email: string;
   password: string;
-  username: string;
 }
 
-function SignUp() {
+function SignIn() {
   const [formData, setFormData] = useState<FormData>({
-    username: '',
     email: '',
     password: '',
   });
@@ -20,18 +18,16 @@ function SignUp() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        'https://localhost:8080/api/users/signup',
+        'https://localhost:8080/api/users/signin',
         {
-          username: formData?.username,
           email: formData?.email,
           password: formData?.password,
         },
         { withCredentials: true }
       );
       if (data) {
-        //alert data.message
-        alert('Create user successful!');
-        navigate('/signin');
+        localStorage.setItem('user', JSON.stringify(data));
+        navigate('/plan');
       }
     } catch (error) {
       console.log(error);
@@ -46,19 +42,33 @@ function SignUp() {
   }
 
   return (
-    <div className="signup-form page-container">
-      <div className="signup-form form-picture-container">
+    <div className="signin page-container">
+      <div className="signin form-picture-container">
+        <div className="signin title">
+          <p>My Interval</p>
+        </div>
+        <div className="signin welcome-text">
+          <div className="signin header">
+            <h1>
+              New Member?<br></br>
+              <span className="signin header text">Join the club.</span>
+            </h1>
+          </div>
+          <div className="signin subheader">
+            <h4>Sign up now and design your own interval workout!</h4>
+          </div>
+          <div className="signin button-container">
+            <Link to={'/signup'}>
+              <button className="signin button-link">
+                Click here to sign up!
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="signup-form form-container">
-        <h1>Sign Up 🏆 </h1>
-        <form className="signup-form form-layout" onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            required={true}
-            value={formData.username}
-            onChange={handleChange}></input>
+      <div className="signin form-container">
+        <h1>Sign In ⏱</h1>
+        <form className="signin form-layout" onSubmit={handleSubmit}>
           <label>Email</label>
           <input
             type="email"
@@ -73,8 +83,8 @@ function SignUp() {
             required={true}
             value={formData.password}
             onChange={handleChange}></input>
-          <button className="signup-form form-button" type="submit">
-            Sign up
+          <button className="signin form-button" type="submit">
+            Sign in
           </button>
         </form>
       </div>
@@ -82,4 +92,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;
