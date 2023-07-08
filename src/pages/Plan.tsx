@@ -1,19 +1,21 @@
-import React, { useContext, useState, useEffect } from 'react';
-import data from '../data/routinedata.json';
+import { useContext, useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import Modal from '../components/Modal';
 import axios from 'axios';
 import { RoutineContext } from '../App';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Routine from '../components/Routine';
 
 function Plan() {
   const { routines, setRoutines } = useContext(RoutineContext);
-  const [isActive, setIsActive] = useState(0);
-  const [isHovered, setIsHovered] = useState(0);
-  const [modalForm, setModalForm] = useState(null);
-  const { routineId, workoutId } = useParams();
+  const [isActive, setIsActive] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState<number>(0);
+  const [modalForm, setModalForm] = useState<string | null>(null);
+  const { routineId, workoutId } = useParams<{
+    routineId?: string;
+    workoutId?: string;
+  }>();
   let showRoutine = null;
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function Plan() {
     fetchRoutines();
   }, [routineId, workoutId]);
 
-  function handleSidebar(routineId) {
+  function handleSidebar(routineId: number) {
     setIsActive(routineId);
   }
 

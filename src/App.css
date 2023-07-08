@@ -110,7 +110,7 @@ button {
   background: wheat;
 }
 
-.content-container > h1{
+.content-container > h1 {
   text-align: center;
 }
 
@@ -374,7 +374,7 @@ span.icon-button-container:hover {
 }
 
 .signin.welcome-text {
-  margin-top: 8em;
+  padding-top: 10em;
   padding-left: 2em;
 }
 .signin.title {

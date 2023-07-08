@@ -1,18 +1,36 @@
-import { useState, createContext, useEffect } from 'react';
+import { useState, createContext } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignIn from './pages/SignIn';
 import Plan from './pages/Plan';
-import Profile from './pages/Profile';
-import axios from 'axios';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 
-export const RoutineContext = createContext();
+interface Workout {
+  workout_id: number;
+  workout_name: string;
+  duration: number;
+  created_at: string;
+  updated_at: string;
+}
 
+interface Routine {
+  routine_id: number;
+  routine_name: string;
+  total_time: number;
+  workouts: Workout[];
+}
+
+interface RoutineContext {
+  routines: Routine[] | undefined;
+  setRoutines: React.Dispatch<React.SetStateAction<Routine[] | undefined>>;
+}
+
+export const RoutineContext = createContext<RoutineContext>(
+  {} as RoutineContext
+);
 function App() {
-  const [routines, setRoutines] = useState([]);
-
+  const [routines, setRoutines] = useState<Routine[] | undefined>([]);
   return (
     <RoutineContext.Provider value={{ routines, setRoutines }}>
       <BrowserRouter>

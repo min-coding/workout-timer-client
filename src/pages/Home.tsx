@@ -1,4 +1,3 @@
-import React from 'react';
 import timer from '../assets/timer.gif';
 import { Link } from 'react-router-dom';
 
