@@ -1,10 +1,16 @@
 import axios from 'axios';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 interface FormData {
   email: string;
   password: string;
+}
+
+interface User {
+  user_id: number;
+  username: string;
+  email: string;
 }
 
 function SignIn() {
@@ -17,7 +23,7 @@ function SignIn() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
+      const { data } = await axios.post<User>(
         'https://localhost:8080/api/users/signin',
         {
           email: formData?.email,
