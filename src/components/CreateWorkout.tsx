@@ -24,7 +24,7 @@ function CreateWorkout({ setModalForm }) {
         `https://localhost:8080/api/workouts/${routineId}`,
         {
           workout_name: formData?.workout_name,
-          duration: formData?.duration,
+          duration: formData?.duration * 10,
         },
         { withCredentials: true }
       );
@@ -49,7 +49,7 @@ function CreateWorkout({ setModalForm }) {
   return (
     <>
       <form className="workout-form" onSubmit={handleSubmit}>
-        <label>Routine name</label>
+        <label>Workout Name</label>
         <input
           className="form-input"
           name="workout_name"

@@ -51,7 +51,6 @@ function EditRoutine({ setModalForm }) {
           className="form-input"
           name="routine_name"
           placeholder="Ex.Upper body"
-          required={true}
           value={formData.routine_name}
           onChange={handleChange}></input>
         <div className="modal-btn-container">
