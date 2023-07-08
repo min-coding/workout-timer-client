@@ -15,10 +15,6 @@ function Timer({ durationsArray, workoutNameArray }) {
     if (!firstStarted) {
       setTime(durationsArray[0]);
     }
-    /**
-     * why are we not setting initial time to durationsArray[0]
-     */
-    console.log(`Use Effect runs!`);
     if (timerStarted) {
       interval = setInterval(() => {
         console.log(`Counting down time in setInterval! ${time}`);
@@ -31,11 +27,7 @@ function Timer({ durationsArray, workoutNameArray }) {
         if (currentWorkoutIndex < durationsArray.length - 1) {
           console.log(`Before Current:${currentWorkoutIndex}`);
           setCurrentWorkoutIndex((prevIndex) => prevIndex + 1);
-          console.log(`After Current:${currentWorkoutIndex}`);
-          // what's actually happening here? why are we using updated nextworkout instead of updated current?
-          console.log(`Before : ${nextWorkoutIndex}`);
           setNextWorkoutIndex((prevIndex) => prevIndex + 1);
-          console.log(`After Next : ${nextWorkoutIndex}`);
           speakNextWorkout(workoutNameArray[nextWorkoutIndex]);
           setTime(durationsArray[nextWorkoutIndex]);
         } else {
@@ -49,22 +41,12 @@ function Timer({ durationsArray, workoutNameArray }) {
       }
     }
     return () => clearInterval(interval);
-  }, [
-    currentWorkoutIndex,
-    time,
-    durationsArray,
-    nextWorkoutIndex,
-    timerStarted,
-  ]);
-  /**
-   * time -> to update the render of time every second.
-   */
+  }, [time, durationsArray, timerStarted]);
 
   function handleStart() {
     if (!timerStarted) {
       speakNextWorkout(workoutNameArray[0]);
-      // can we remove this?
-      // setTime(durationsArray[currentWorkoutIndex]);
+      setTime(durationsArray[currentWorkoutIndex]);
       setTimerStarted(true);
       setFirstStarted(true);
     }
@@ -81,7 +63,6 @@ function Timer({ durationsArray, workoutNameArray }) {
     }
   }
 
-  //works only end of routine
   function handleReset() {
     if (!timerStarted) {
       setTime(durationsArray[0]);
@@ -97,8 +78,6 @@ function Timer({ durationsArray, workoutNameArray }) {
     message.volume = 5;
     message.rate = 0.75;
     message.pitch = -20;
-
-    // Optional: Specify the language and voice
     message.lang = 'en-US';
     message.voice = speechSynthesis.getVoices()[0];
 
