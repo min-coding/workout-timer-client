@@ -18,10 +18,7 @@ function Sidebar({
         {routines.map((routine) => {
           const { routine_id, routine_name } = routine;
           return (
-            <Link
-              key={routine_id}
-              to={`/plan/${routine_id}`}
-              className={isActive === routine.routine_id ? 'active' : ''}>
+            <Link key={routine_id} to={`/plan/${routine_id}`}>
               <div
                 key={routine_id}
                 className={`routine-link-container ${
@@ -34,13 +31,15 @@ function Sidebar({
                   setIsHovered(0);
                 }}
                 onClick={() => chooseRoutine(routine_id)}>
-                {routine_name}
+                <p className={isActive === routine.routine_id ? 'active' : 'inactive'}>
+                  {routine_name}
+                </p>
               </div>
             </Link>
           );
         })}
       </div>
-      <div>
+      <div className="sidebar button-container">
         <button
           className="routine-create-btn"
           onClick={() => {

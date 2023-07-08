@@ -17,8 +17,8 @@ function Home() {
           </h4>
         </div>
         <div className="button-container">
-          <Link to={'/signup'}>
-            <button className="button-link">Click here to sign up!</button>
+          <Link to={'/signin'}>
+            <button className="button-link">Click here to sign in!</button>
           </Link>
         </div>
       </div>

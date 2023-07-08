@@ -6,7 +6,9 @@ function Topbar({ setModalForm }) {
   const navigate = useNavigate();
   return (
     <div className="topbar-container">
-      <div className="greeting">Hello, {user.username}! 👋🏻</div>
+      <div className="greeting">
+        <p>Hello, {user.username}! 👋🏻</p>
+      </div>
       <div
         className="profile-setting"
         onClick={() => {

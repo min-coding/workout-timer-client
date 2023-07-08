@@ -55,22 +55,27 @@ function Workout({
   return (
     <div className="content-workout-container" key={workout_id}>
       <div className="trash-icon-container">
-        <button
-          className="icon-button"
+        <span
+          className="icon-button-container"
           onClick={() => deleteWorkout(workout_id)}>
-          <img src={trashIcon} alt="deleteIcon"></img>
-        </button>
-        <button
-          className="icon-button"
+           🗑 
+        </span>
+        
+        <span
+          className="icon-button-container"
           onClick={() => {
             setModalForm('editWorkout');
             navigate(`/workout/${workout_id}`);
           }}>
-          <img src={editIcon} alt="editIcon"></img>
-        </button>
+          ✏️ 
+        </span>
       </div>
-      <div>{workout_name}</div>
-      <div>{duration / 10} seconds</div>
+      <div>
+        <p>{workout_name}</p>
+      </div>
+      <div>
+        <p>{duration / 10} seconds</p>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import data from '../data/routinedata.json';
 import { RoutineContext } from '../App';
 import axios from 'axios';
@@ -48,25 +48,26 @@ function Routine({
       <div className="content-header">
         <div>
           <h3>{routine_name}</h3>
-          <button
-            className="icon-button"
+          <span
+            className="icon-button-container"
             onClick={() => deleteRoutine(routine_id)}>
-            <img src={trashIcon} alt="deleteIcon"></img>
-          </button>
-          <button
-            className="icon-button"
+            🗑
+          </span>
+          <span
+            className="icon-button-container"
             onClick={() => {
               setModalForm('editRoutine');
               navigate(`/plan/${routine_id}`);
             }}>
-            <img src={editIcon} alt="editIcon"></img>
-          </button>
+            ✏️
+          </span>
         </div>
-
+        
         <Timer
           durationsArray={durationsArray}
           workoutNameArray={workoutNameArray}
         />
+        
       </div>
 
       <p className="content-sub-header">Total time {total_time / 10} seconds</p>
@@ -82,16 +83,16 @@ function Routine({
               routine_id={routine_id}
             />
           ))}
-        <div className="content-btn-container">
-          <button
-            className="content-create-btn"
-            onClick={() => {
-              setModalForm('createWorkout');
-              navigate(`/plan/${routine_id}`);
-            }}>
-            Create workout
-          </button>
-        </div>
+      </div>
+      <div className="content-btn-container">
+        <button
+          className="content-create-btn"
+          onClick={() => {
+            setModalForm('createWorkout');
+            navigate(`/plan/${routine_id}`);
+          }}>
+          Create workout
+        </button>
       </div>
     </div>
   );
