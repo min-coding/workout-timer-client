@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface FormData {
@@ -47,8 +47,7 @@ function SignUp() {
 
   return (
     <div className="signup-form page-container">
-      <div className="signup-form form-picture-container">
-      </div>
+      <div className="signup-form form-picture-container"></div>
       <div className="signup-form form-container">
         <h1>Sign Up 🏆 </h1>
         <form className="signup-form form-layout" onSubmit={handleSubmit}>

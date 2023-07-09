@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useState, useContext } from 'react';
-import { RoutineContext } from '../App';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface FormData {
@@ -11,7 +10,6 @@ function CreateRoutine({ setModalForm }) {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
   });
-  const { routines, setRoutines } = useContext(RoutineContext);
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -28,7 +26,6 @@ function CreateRoutine({ setModalForm }) {
         alert('create routine sucessful!');
       }
       setModalForm(null);
-      //update routine by navigate
       navigate(`/plan/`);
     } catch (error) {
       console.log(error);

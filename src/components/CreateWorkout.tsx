@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { RoutineContext } from '../App';
 
 interface FormData {
   workout_name: string;
@@ -15,7 +14,6 @@ function CreateWorkout({ setModalForm }) {
   });
   const { routineId } = useParams();
   const navigate = useNavigate();
-  const { routines, setRoutines } = useContext(RoutineContext);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -31,7 +29,6 @@ function CreateWorkout({ setModalForm }) {
       if (data) {
         alert('create workout sucessful!');
         setModalForm(null);
-        //update routine by navigate
         navigate(`/plan`);
       }
     } catch (error) {

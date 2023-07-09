@@ -1,12 +1,17 @@
-import React, { useContext} from 'react';
-import data from '../data/routinedata.json';
-import { RoutineContext } from '../App';
+import { useContext } from 'react';
+import { RoutineContext, WorkoutType } from '../App';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import trashIcon from '../assets/delete-svgrepo-com.svg';
-import editIcon from '../assets/edit-svgrepo-com.svg';
 import Timer from './Timer';
 import Workout from './Workout';
+
+interface RoutineProps {
+  routine_name: string;
+  routine_id: number;
+  total_time: number;
+  workouts: WorkoutType[];
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
 function Routine({
   routine_name,
@@ -14,8 +19,7 @@ function Routine({
   total_time,
   workouts,
   setModalForm,
-}) {
-  //translate total_time into minutes seconds
+}: RoutineProps) {
   const { routines, setRoutines } = useContext(RoutineContext);
 
   //workout duration array
@@ -24,7 +28,7 @@ function Routine({
 
   const navigate = useNavigate();
 
-  async function deleteRoutine(routineId) {
+  async function deleteRoutine(routineId: number) {
     try {
       const { data } = await axios.delete(
         `https://localhost:8080/api/routines/${routineId}`,
@@ -62,12 +66,11 @@ function Routine({
             ✏️
           </span>
         </div>
-        
+
         <Timer
           durationsArray={durationsArray}
           workoutNameArray={workoutNameArray}
         />
-        
       </div>
 
       <p className="content-sub-header">Total time {total_time / 10} seconds</p>

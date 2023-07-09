@@ -1,7 +1,14 @@
-import React, { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data/routinedata.json';
 import { RoutineContext } from '../App';
+
+interface SidebarProps {
+  chooseRoutine: (routineId: number) => void;
+  isActive: number | null;
+  isHovered: number | null;
+  setIsHovered: React.Dispatch<React.SetStateAction<number | null>>;
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
 function Sidebar({
   chooseRoutine,
@@ -9,9 +16,9 @@ function Sidebar({
   isHovered,
   setIsHovered,
   setModalForm,
-}) {
+}: SidebarProps) {
   //call routine lists and save it and render here , if there's no routine suggest creating routine
-  const { routines, setRoutines } = useContext(RoutineContext);
+  const { routines } = useContext(RoutineContext);
   return (
     <div className="sidebar-container">
       <div className="routine-list">
@@ -31,7 +38,10 @@ function Sidebar({
                   setIsHovered(0);
                 }}
                 onClick={() => chooseRoutine(routine_id)}>
-                <p className={isActive === routine.routine_id ? 'active' : 'inactive'}>
+                <p
+                  className={
+                    isActive === routine.routine_id ? 'active' : 'inactive'
+                  }>
                   {routine_name}
                 </p>
               </div>

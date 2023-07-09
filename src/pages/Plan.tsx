@@ -9,8 +9,8 @@ import Routine from '../components/Routine';
 
 function Plan() {
   const { routines, setRoutines } = useContext(RoutineContext);
-  const [isActive, setIsActive] = useState<number>(0);
-  const [isHovered, setIsHovered] = useState<number>(0);
+  const [isActive, setIsActive] = useState<number | null>(0);
+  const [isHovered, setIsHovered] = useState<number | null>(0);
   const [modalForm, setModalForm] = useState<string | null>(null);
   const { routineId, workoutId } = useParams<{
     routineId?: string;
