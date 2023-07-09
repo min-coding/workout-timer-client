@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
 
-function Timer({ durationsArray, workoutNameArray }) {
-  const [currentWorkoutIndex, setCurrentWorkoutIndex] = useState(0);
-  const [time, setTime] = useState(0);
-  const [nextWorkoutIndex, setNextWorkoutIndex] = useState(1);
-  const [timerStarted, setTimerStarted] = useState(false);
-  const [firstStarted, setFirstStarted] = useState(false);
-  const [minute, setMinute] = useState(0);
-  const [second, setSecond] = useState(0);
+function Timer({
+  durationsArray,
+  workoutNameArray,
+}: {
+  durationsArray: number[];
+  workoutNameArray: string[];
+}) {
+  const [currentWorkoutIndex, setCurrentWorkoutIndex] = useState<number>(0);
+  const [time, setTime] = useState<number>(0);
+  const [nextWorkoutIndex, setNextWorkoutIndex] = useState<number>(1);
+  const [timerStarted, setTimerStarted] = useState<boolean>(false);
+  const [firstStarted, setFirstStarted] = useState<boolean>(false);
+  const [minute, setMinute] = useState<number>(0);
+  const [second, setSecond] = useState<number>(0);
 
   useEffect(() => {
-    let interval = null;
+    let interval: number | undefined = undefined;
 
     if (!firstStarted) {
       setTime(durationsArray[0]);
@@ -73,7 +79,7 @@ function Timer({ durationsArray, workoutNameArray }) {
     }
   }
 
-  function speakNextWorkout(text) {
+  function speakNextWorkout(text: string) {
     const message = new SpeechSynthesisUtterance(text);
     message.volume = 5;
     message.rate = 0.75;
