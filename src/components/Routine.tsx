@@ -10,6 +10,7 @@ interface RoutineProps {
   routine_id: number;
   total_time: number;
   workouts: WorkoutType[];
+  setIsActive: React.Dispatch<React.SetStateAction<number | null>>;
   setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
@@ -19,6 +20,7 @@ function Routine({
   total_time,
   workouts,
   setModalForm,
+  setIsActive,
 }: RoutineProps) {
   const { routines, setRoutines } = useContext(RoutineContext);
 
@@ -41,6 +43,10 @@ function Routine({
           (routine) => routine.routine_id !== routineId
         );
         setRoutines(updatedRoutines);
+        if (routines.length > 0) {
+          navigate(`/plan/${routines[routines.length - 2].routine_id}`);
+          setIsActive(routines[routines.length - 2].routine_id);
+        } else navigate('/plan');
       }
     } catch (error) {
       console.log(error);

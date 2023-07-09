@@ -52,6 +52,7 @@ function Plan() {
           routine_name={routines[0].routine_name}
           total_time={routines[0].total_time}
           workouts={routines[0].workouts}
+          setIsActive={setIsActive}
           setModalForm={setModalForm}></Routine>
       );
     } else if (isActive && routines.length >= 0) {
@@ -65,6 +66,7 @@ function Plan() {
               routine_name={routine_name}
               total_time={total_time}
               workouts={workouts}
+              setIsActive={setIsActive}
               setModalForm={setModalForm}></Routine>
           );
         }

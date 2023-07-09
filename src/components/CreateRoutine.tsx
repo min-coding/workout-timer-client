@@ -29,7 +29,6 @@ function CreateRoutine({
         { withCredentials: true }
       );
       if (data) {
-        console.log(data);
         alert('create routine sucessful!');
       }
       setModalForm(null);
