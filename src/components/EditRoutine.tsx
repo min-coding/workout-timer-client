@@ -1,17 +1,19 @@
 import axios from 'axios';
-import React, { useState, useContext } from 'react';
-import { RoutineContext } from '../App';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 interface FormData {
   routine_name: string;
 }
 
-function EditRoutine({ setModalForm }) {
+function EditRoutine({
+  setModalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
   });
-  const { routines, setRoutines } = useContext(RoutineContext);
   const navigate = useNavigate();
   const { routineId } = useParams();
 

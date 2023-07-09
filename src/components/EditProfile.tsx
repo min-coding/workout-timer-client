@@ -1,14 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { RoutineContext } from '../App';
 
 interface FormData {
   username: string;
   password: string;
 }
 
-function EditProfile({ setModalForm }) {
+function EditProfile({
+  setModalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [formData, setFormData] = useState<FormData>({

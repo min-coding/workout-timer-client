@@ -7,7 +7,11 @@ interface FormData {
   duration: number;
 }
 
-function CreateWorkout({ setModalForm }) {
+function CreateWorkout({
+  setModalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const [formData, setFormData] = useState<FormData>({
     workout_name: '',
     duration: 0,

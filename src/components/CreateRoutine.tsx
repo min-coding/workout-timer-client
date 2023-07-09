@@ -6,7 +6,11 @@ interface FormData {
   routine_name: string;
 }
 
-function CreateRoutine({ setModalForm }) {
+function CreateRoutine({
+  setModalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
   });
