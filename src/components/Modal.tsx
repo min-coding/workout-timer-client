@@ -1,11 +1,16 @@
-import React from 'react';
 import CreateRoutine from './CreateRoutine';
 import CreateWorkout from './CreateWorkout';
 import EditProfile from './EditProfile';
 import EditRoutine from './EditRoutine';
 import EditWorkout from './EditWorkout';
 
-function Modal({ setModalForm, modalForm }) {
+function Modal({
+  setModalForm,
+  modalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+  modalForm: string | null;
+}) {
   let modalContent = null;
 
   //set modal content
