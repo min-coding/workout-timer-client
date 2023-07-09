@@ -83,7 +83,10 @@ function Plan() {
         setModalForm={setModalForm}></Sidebar>
       {showRoutine}
       {modalForm && (
-        <Modal setModalForm={setModalForm} modalForm={modalForm}></Modal>
+        <Modal
+          setModalForm={setModalForm}
+          modalForm={modalForm}
+          setIsActive={setIsActive}></Modal>
       )}
       {modalForm && <div className="modal-overlay"></div>}
     </div>

@@ -7,15 +7,21 @@ import EditWorkout from './EditWorkout';
 function Modal({
   setModalForm,
   modalForm,
+  setIsActive,
 }: {
   setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
   modalForm: string | null;
+  setIsActive: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   let modalContent = null;
 
   //set modal content
   if (modalForm === 'createRoutine') {
-    modalContent = <CreateRoutine setModalForm={setModalForm}></CreateRoutine>;
+    modalContent = (
+      <CreateRoutine
+        setModalForm={setModalForm}
+        setIsActive={setIsActive}></CreateRoutine>
+    );
   } else if (modalForm === 'createWorkout') {
     modalContent = <CreateWorkout setModalForm={setModalForm}></CreateWorkout>;
   } else if (modalForm === 'editProfile') {

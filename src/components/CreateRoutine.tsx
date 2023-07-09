@@ -8,8 +8,10 @@ interface FormData {
 
 function CreateRoutine({
   setModalForm,
+  setIsActive,
 }: {
   setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+  setIsActive: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
@@ -27,10 +29,12 @@ function CreateRoutine({
         { withCredentials: true }
       );
       if (data) {
+        console.log(data);
         alert('create routine sucessful!');
       }
       setModalForm(null);
-      navigate(`/plan/`);
+      setIsActive(data.routine_id);
+      navigate(`/plan/${data.routine_id}`);
     } catch (error) {
       console.log(error);
     }
