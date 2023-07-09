@@ -1,7 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Topbar({ setModalForm }) {
+function Topbar({
+  setModalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
   return (

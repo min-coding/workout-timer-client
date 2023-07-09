@@ -6,7 +6,7 @@ import Plan from './pages/Plan';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 
-interface Workout {
+export interface WorkoutType {
   workout_id: number;
   workout_name: string;
   duration: number;
@@ -14,23 +14,24 @@ interface Workout {
   updated_at: string;
 }
 
-interface Routine {
+export interface RoutineType {
   routine_id: number;
   routine_name: string;
   total_time: number;
-  workouts: Workout[];
+  workouts: WorkoutType[];
 }
 
-interface RoutineContext {
-  routines: Routine[] | undefined;
-  setRoutines: React.Dispatch<React.SetStateAction<Routine[] | undefined>>;
+interface RoutineContextType {
+  routines: RoutineType[] | undefined;
+  setRoutines: React.Dispatch<React.SetStateAction<RoutineType[] | undefined>>;
 }
 
-export const RoutineContext = createContext<RoutineContext>(
-  {} as RoutineContext
+export const RoutineContext = createContext<RoutineContextType>(
+  {} as RoutineContextType
 );
+
 function App() {
-  const [routines, setRoutines] = useState<Routine[] | undefined>([]);
+  const [routines, setRoutines] = useState<RoutineType[] | undefined>([]);
   return (
     <RoutineContext.Provider value={{ routines, setRoutines }}>
       <BrowserRouter>
