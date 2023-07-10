@@ -23,7 +23,7 @@ function SignIn() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const { data } = await axios.post<User>(
+      const res = await axios.post<User>(
         'https://localhost:8080/api/users/signin',
         {
           email: formData?.email,
@@ -31,12 +31,12 @@ function SignIn() {
         },
         { withCredentials: true }
       );
-      if (data) {
-        localStorage.setItem('user', JSON.stringify(data));
+      if (res.status === 200) {
+        localStorage.setItem('user', JSON.stringify(res.data));
         navigate('/plan');
-      }
+      } 
     } catch (error) {
-      console.log(error);
+      alert(error.response.data);
     }
   }
 
