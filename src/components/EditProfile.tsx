@@ -22,7 +22,7 @@ function EditProfile({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const { data } = await axios.put(
+      const res = await axios.put(
         `https://localhost:8080/api/users/profile/${userId}`,
         {
           username: formData?.username,
@@ -30,16 +30,15 @@ function EditProfile({
         },
         { withCredentials: true }
       );
-      console.log(data);
-      if (data) {
+      if (res.status === 200) {
         alert('Update profile sucessful!');
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(res.data));
         setModalForm(null);
         //update routine by navigate
         navigate(`/plan`);
       }
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error);
     }
   }
 

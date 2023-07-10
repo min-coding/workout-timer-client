@@ -19,7 +19,7 @@ function SignUp() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
+      const res = await axios.post(
         'https://localhost:8080/api/users/signup',
         {
           username: formData?.username,
@@ -28,13 +28,13 @@ function SignUp() {
         },
         { withCredentials: true }
       );
-      if (data) {
-        //alert data.message
-        alert('Create user successful!');
+      console.log(`im res ${res}`)
+      if (res.status === 200) {
+        alert(res.data.message);
         navigate('/signin');
       }
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.error)
     }
   }
 
