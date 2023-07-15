@@ -7,12 +7,6 @@ interface FormData {
   password: string;
 }
 
-interface User {
-  user_id: number;
-  username: string;
-  email: string;
-}
-
 function SignIn() {
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -23,7 +17,7 @@ function SignIn() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const res = await axios.post<User>(
+      const res = await axios.post<FormData>(
         'https://localhost:8080/api/users/signin',
         {
           email: formData?.email,
@@ -34,7 +28,7 @@ function SignIn() {
       if (res.status === 200) {
         localStorage.setItem('user', JSON.stringify(res.data));
         navigate('/plan');
-      } 
+      }
     } catch (error) {
       alert(error.response.data);
     }

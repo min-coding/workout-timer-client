@@ -96,7 +96,13 @@ button {
   gap: 1em;
 }
 
-.profile-setting {
+.topbar-user {
+  display: flex;
+  gap: 2em;
+}
+
+.topbar-profile-setting,
+.topbar-logout {
   cursor: pointer;
 }
 
