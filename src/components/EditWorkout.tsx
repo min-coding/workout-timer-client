@@ -23,7 +23,7 @@ function EditWorkout({
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `https://localhost:8080/api/workouts/${workoutId}`,
+        `https://workout-timer-server-production.up.railway.app/api/workouts/${workoutId}`,
         {
           workout_name: formData?.workout_name,
           duration: formData?.duration * 10,

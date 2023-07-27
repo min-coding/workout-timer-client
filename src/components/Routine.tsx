@@ -33,17 +33,17 @@ function Routine({
   async function deleteRoutine(routineId: number) {
     try {
       const { data } = await axios.delete(
-        `https://localhost:8080/api/routines/${routineId}`,
+        `https://workout-timer-server-production.up.railway.app/api/routines/${routineId}`,
         {
           withCredentials: true,
         }
       );
       if (data) {
-        const updatedRoutines = routines.filter(
+        const updatedRoutines = routines?.filter(
           (routine) => routine.routine_id !== routineId
         );
         setRoutines(updatedRoutines);
-        if (routines.length > 0) {
+        if (routines && routines.length > 0) {
           navigate(`/plan/${routines[routines.length - 2].routine_id}`);
           setIsActive(routines[routines.length - 2].routine_id);
         } else navigate('/plan');

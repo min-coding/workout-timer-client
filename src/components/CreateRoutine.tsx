@@ -22,7 +22,7 @@ function CreateRoutine({
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        'https://localhost:8080/api/routines',
+        'https://workout-timer-server-production.up.railway.app/api/routines',
         {
           routine_name: formData?.routine_name,
         },

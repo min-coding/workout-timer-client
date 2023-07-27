@@ -9,14 +9,19 @@ function Topbar({
 }: {
   setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const userString = localStorage.getItem('user');
+  const user = userString ? JSON.parse(userString) : null;
+
   const navigate = useNavigate();
 
   async function logOut() {
     try {
-      const res = await axios.post('https://localhost:8080/api/users/signout', {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        'https://workout-timer-server-production.up.railway.app/api/users/signout',
+        {
+          withCredentials: true,
+        }
+      );
       if (res.status === 200) {
         alert(res.data);
         localStorage.clear();

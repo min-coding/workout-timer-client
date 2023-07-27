@@ -22,7 +22,7 @@ function Sidebar({
   return (
     <div className="sidebar-container">
       <div className="routine-list">
-        {routines.map((routine) => {
+        {routines?.map((routine) => {
           const { routine_id, routine_name } = routine;
           return (
             <Link key={routine_id} to={`/plan/${routine_id}`}>

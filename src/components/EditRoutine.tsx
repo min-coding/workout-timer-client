@@ -21,7 +21,7 @@ function EditRoutine({
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `https://localhost:8080/api/routines/${routineId}`,
+        `https://workout-timer-server-production.up.railway.app/api/routines/${routineId}`,
         {
           routine_name: formData?.routine_name,
         },

@@ -18,19 +18,21 @@ function SignIn() {
     e.preventDefault();
     try {
       const res = await axios.post<FormData>(
-        'https://localhost:8080/api/users/signin',
+        'https://workout-timer-server-production.up.railway.app/api/users/signin',
         {
           email: formData?.email,
           password: formData?.password,
         },
         { withCredentials: true }
       );
+      console.log(res);
       if (res.status === 200) {
         localStorage.setItem('user', JSON.stringify(res.data));
         navigate('/plan');
       }
-    } catch (error) {
-      alert(error.response.data);
+    } catch (error: any) {
+      if (error.response.status === 403) alert(error.response.data);
+      else alert('Server failed to respond');
     }
   }
 

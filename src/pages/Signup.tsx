@@ -20,7 +20,7 @@ function SignUp() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'https://localhost:8080/api/users/signup',
+        'https://workout-timer-server-production.up.railway.app/api/users/signup',
         {
           username: formData?.username,
           email: formData?.email,
@@ -28,13 +28,13 @@ function SignUp() {
         },
         { withCredentials: true }
       );
-      console.log(`im res ${res}`)
+      console.log(`im res ${res}`);
       if (res.status === 200) {
         alert(res.data.message);
         navigate('/signin');
       }
-    } catch (error) {
-      alert(error.response.data.error)
+    } catch (error: any) {
+      alert(error.response.data.error);
     }
   }
 

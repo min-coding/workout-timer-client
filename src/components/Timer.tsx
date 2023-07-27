@@ -16,7 +16,7 @@ function Timer({
   const [second, setSecond] = useState<number>(0);
 
   useEffect(() => {
-    let interval: number | undefined = undefined;
+    let interval: NodeJS.Timeout | undefined = undefined;
 
     if (!firstStarted) {
       setTime(durationsArray[0]);

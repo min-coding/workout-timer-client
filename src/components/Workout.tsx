@@ -24,12 +24,12 @@ function Workout({
   async function deleteWorkout(workoutId: number) {
     try {
       const { data } = await axios.delete(
-        `https://localhost:8080/api/workouts/${workoutId}`,
+        `https://workout-timer-server-production.up.railway.app/api/workouts/${workoutId}`,
         { withCredentials: true }
       );
 
       if (data) {
-        const updatedRoutines = routines.map((routine) => {
+        const updatedRoutines = routines?.map((routine) => {
           if (routine.routine_id === routine_id) {
             // Remove workout from routine
             const updatedWorkouts = routine.workouts.filter(

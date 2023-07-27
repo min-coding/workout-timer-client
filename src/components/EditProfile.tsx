@@ -23,7 +23,7 @@ function EditProfile({
     e.preventDefault();
     try {
       const res = await axios.put(
-        `https://localhost:8080/api/users/profile/${userId}`,
+        `https://workout-timer-server-production.up.railway.app/api/users/profile/${userId}`,
         {
           username: formData?.username,
           password: formData?.password,
@@ -37,7 +37,7 @@ function EditProfile({
         //update routine by navigate
         navigate(`/plan`);
       }
-    } catch (error) {
+    } catch (error: any) {
       alert(error.response.data.error);
     }
   }

@@ -23,7 +23,7 @@ function CreateWorkout({
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `https://localhost:8080/api/workouts/${routineId}`,
+        `https://workout-timer-server-production.up.railway.app/api/workouts/${routineId}`,
         {
           workout_name: formData?.workout_name,
           duration: formData?.duration * 10,

@@ -22,7 +22,7 @@ function Plan() {
     async function fetchRoutines() {
       try {
         const { data } = await axios.get(
-          'https://localhost:8080/api/routines/',
+          'https://workout-timer-server-production.up.railway.app/api/routines/',
           { withCredentials: true }
         );
         setRoutines(data);
