@@ -1,18 +1,35 @@
-import React from 'react';
 import CreateRoutine from './CreateRoutine';
 import CreateWorkout from './CreateWorkout';
 import EditProfile from './EditProfile';
+import EditRoutine from './EditRoutine';
+import EditWorkout from './EditWorkout';
 
-function Modal({ setModalForm, modalForm }) {
+function Modal({
+  setModalForm,
+  modalForm,
+  setIsActive,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+  modalForm: string | null;
+  setIsActive: React.Dispatch<React.SetStateAction<number | null>>;
+}) {
   let modalContent = null;
 
   //set modal content
-  if (modalForm === 'routine') {
-    modalContent = <CreateRoutine setModalForm={setModalForm}></CreateRoutine>;
-  } else if (modalForm === 'workout') {
+  if (modalForm === 'createRoutine') {
+    modalContent = (
+      <CreateRoutine
+        setModalForm={setModalForm}
+        setIsActive={setIsActive}></CreateRoutine>
+    );
+  } else if (modalForm === 'createWorkout') {
     modalContent = <CreateWorkout setModalForm={setModalForm}></CreateWorkout>;
-  } else if (modalForm === 'profile') {
+  } else if (modalForm === 'editProfile') {
     modalContent = <EditProfile setModalForm={setModalForm}></EditProfile>;
+  } else if (modalForm === 'editRoutine') {
+    modalContent = <EditRoutine setModalForm={setModalForm}></EditRoutine>;
+  } else if (modalForm === 'editWorkout') {
+    modalContent = <EditWorkout setModalForm={setModalForm}></EditWorkout>;
   }
 
   return (

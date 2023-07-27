@@ -3,42 +3,41 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 interface FormData {
-  username: string;
-  password: string;
+  workout_name: string;
+  duration: number;
 }
 
-function EditProfile({
+function EditWorkout({
   setModalForm,
 }: {
   setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
-  const navigate = useNavigate();
-  const { userId } = useParams();
   const [formData, setFormData] = useState<FormData>({
-    username: '',
-    password: '',
+    workout_name: '',
+    duration: 0,
   });
+  const { workoutId } = useParams();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const res = await axios.put(
-        `https://workout-timer-server-production.up.railway.app/api/users/profile/${userId}`,
+      const { data } = await axios.put(
+        `https://workout-timer-server-production.up.railway.app/api/workouts/${workoutId}`,
         {
-          username: formData?.username,
-          password: formData?.password,
+          workout_name: formData?.workout_name,
+          duration: formData?.duration * 10,
         },
         { withCredentials: true }
       );
-      if (res.status === 200) {
-        alert('Update profile sucessful!');
-        localStorage.setItem('user', JSON.stringify(res.data));
+      if (data) {
+        alert('Edit workout sucessful!');
         setModalForm(null);
-        //update routine by navigate
+        //update workout by navigate
         navigate(`/plan`);
       }
-    } catch (error: any) {
-      alert(error.response.data.error);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -51,25 +50,26 @@ function EditProfile({
 
   return (
     <>
-      <form className="profile-form" onSubmit={handleSubmit}>
-        <label>Username</label>
+      <form className="workout-form" onSubmit={handleSubmit}>
+        <label>Routine name</label>
         <input
           className="form-input"
-          name="username"
-          placeholder="Update your username"
-          value={formData.username}
+          name="workout_name"
+          placeholder="Ex. Plank"
+          value={formData.workout_name}
           onChange={handleChange}></input>
-        <label>Password</label>
+        <label>Duration (seconds)</label>
         <input
           className="form-input"
-          type="text"
-          name="password"
-          value={formData.password}
-          placeholder="Update your password"
+          type="number"
+          min="0"
+          max="3600"
+          name="duration"
+          value={formData.duration}
           onChange={handleChange}></input>
         <div className="modal-btn-container">
           <button className="modal-submit-btn" type="submit">
-            Save changes
+            Edit Workout
           </button>
         </div>
       </form>
@@ -77,4 +77,4 @@ function EditProfile({
   );
 }
 
-export default EditProfile;
+export default EditWorkout;

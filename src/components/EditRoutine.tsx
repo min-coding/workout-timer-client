@@ -1,39 +1,38 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface FormData {
   routine_name: string;
 }
 
-function CreateRoutine({
+function EditRoutine({
   setModalForm,
-  setIsActive,
 }: {
   setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
-  setIsActive: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const [formData, setFormData] = useState<FormData>({
     routine_name: '',
   });
   const navigate = useNavigate();
+  const { routineId } = useParams();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        'https://workout-timer-server-production.up.railway.app/api/routines',
+      const { data } = await axios.put(
+        `https://workout-timer-server-production.up.railway.app/api/routines/${routineId}`,
         {
           routine_name: formData?.routine_name,
         },
         { withCredentials: true }
       );
       if (data) {
-        alert('create routine sucessful!');
+        alert('Edit routine sucessful!');
       }
       setModalForm(null);
-      setIsActive(data.routine_id);
-      navigate(`/plan/${data.routine_id}`);
+      //update routine by navigate
+      navigate(`/plan/`);
     } catch (error) {
       console.log(error);
     }
@@ -54,12 +53,11 @@ function CreateRoutine({
           className="form-input"
           name="routine_name"
           placeholder="Ex.Upper body"
-          required={true}
           value={formData.routine_name}
           onChange={handleChange}></input>
         <div className="modal-btn-container">
           <button className="modal-submit-btn" type="submit">
-            Create routine
+            Edit routine name
           </button>
         </div>
       </form>
@@ -67,4 +65,4 @@ function CreateRoutine({
   );
 }
 
-export default CreateRoutine;
+export default EditRoutine;

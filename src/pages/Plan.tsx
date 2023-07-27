@@ -1,26 +1,28 @@
-import React, { useContext, useState, useEffect } from 'react';
-import Form from '../components/SigninForm';
-import data from '../data/routinedata.json';
+import { useContext, useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
-import Content from '../components/Content';
 import Modal from '../components/Modal';
 import axios from 'axios';
 import { RoutineContext } from '../App';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Routine from '../components/Routine';
 
 function Plan() {
   const { routines, setRoutines } = useContext(RoutineContext);
-  const [isActive, setIsActive] = useState(0);
-  const [isHovered, setIsHovered] = useState(0);
-  const [modalForm, setModalForm] = useState(null);
-  const { routineId } = useParams();
+  const [isActive, setIsActive] = useState<number | null>(0);
+  const [isHovered, setIsHovered] = useState<number | null>(0);
+  const [modalForm, setModalForm] = useState<string | null>(null);
+  const { routineId, workoutId } = useParams<{
+    routineId?: string;
+    workoutId?: string;
+  }>();
+  let showRoutine = null;
 
   useEffect(() => {
     async function fetchRoutines() {
       try {
         const { data } = await axios.get(
-          'https://localhost:8080/api/routines/',
+          'https://workout-timer-server-production.up.railway.app/api/routines/',
           { withCredentials: true }
         );
         setRoutines(data);
@@ -29,19 +31,47 @@ function Plan() {
       }
     }
     fetchRoutines();
-  }, [routineId]);
-  /**fetch routine runs when first render, after update form, we navigate back to main page (update routineId)
-   * so the page rerender and show results. In this case, that means everytime after we setRoutine,
-   * we need to navigate back to main for useEffect to automatically updated and render updated state.
-   * the state itself is already updated in the component, basically we use it to
-   * 1. fetch initial data
-   * 2. automatically update state, so it doesnt have to wait for next render
-   *
-   */
+  }, [routineId, workoutId]);
 
-  function handleSidebar(routineId) {
+  function handleSidebar(routineId: number) {
     setIsActive(routineId);
-    // setIsHovered(routineId);
+  }
+
+  if (routines) {
+    if (routines.length === 0) {
+      showRoutine = (
+        <div className="content-container">
+          <h1>You have no routine yet. Please create your routine!</h1>
+        </div>
+      );
+    } else if (!isActive && routines.length >= 0) {
+      showRoutine = (
+        <Routine
+          key={routines[0].routine_id}
+          routine_id={routines[0].routine_id}
+          routine_name={routines[0].routine_name}
+          total_time={routines[0].total_time}
+          workouts={routines[0].workouts}
+          setIsActive={setIsActive}
+          setModalForm={setModalForm}></Routine>
+      );
+    } else if (isActive && routines.length >= 0) {
+      showRoutine = routines.map((routine) => {
+        const { routine_name, routine_id, total_time, workouts } = routine;
+        if (routine_id === isActive) {
+          return (
+            <Routine
+              key={routine_id}
+              routine_id={routine_id}
+              routine_name={routine_name}
+              total_time={total_time}
+              workouts={workouts}
+              setIsActive={setIsActive}
+              setModalForm={setModalForm}></Routine>
+          );
+        }
+      });
+    }
   }
 
   return (
@@ -53,29 +83,12 @@ function Plan() {
         isHovered={isHovered}
         setIsHovered={setIsHovered}
         setModalForm={setModalForm}></Sidebar>
-      {isActive ? (
-        routines.map((routine) => {
-          const { routine_name, routine_id, total_time, workouts } = routine;
-          if (routine_id === isActive) {
-            return (
-              <Content
-                key={routine_id}
-                routine_id={routine_id}
-                routine_name={routine_name}
-                total_time={total_time}
-                workouts={workouts}
-                setModalForm={setModalForm}></Content>
-            );
-          }
-        })
-      ) : (
-        <h1>You have no routine yet. Please create your routine!</h1>
-      )}
+      {showRoutine}
       {modalForm && (
         <Modal
           setModalForm={setModalForm}
-          // chooseRoutine={handleSidebar}
-          modalForm={modalForm}></Modal>
+          modalForm={modalForm}
+          setIsActive={setIsActive}></Modal>
       )}
       {modalForm && <div className="modal-overlay"></div>}
     </div>

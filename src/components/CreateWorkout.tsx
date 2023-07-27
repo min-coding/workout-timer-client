@@ -1,37 +1,38 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { RoutineContext } from '../App';
 
 interface FormData {
   workout_name: string;
   duration: number;
 }
 
-function CreateWorkout({ setModalForm }) {
+function CreateWorkout({
+  setModalForm,
+}: {
+  setModalForm: React.Dispatch<React.SetStateAction<string | null>>;
+}) {
   const [formData, setFormData] = useState<FormData>({
     workout_name: '',
     duration: 0,
   });
   const { routineId } = useParams();
   const navigate = useNavigate();
-  const { routines, setRoutines } = useContext(RoutineContext);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `https://localhost:8080/api/workouts/${routineId}`,
+        `https://workout-timer-server-production.up.railway.app/api/workouts/${routineId}`,
         {
           workout_name: formData?.workout_name,
-          duration: formData?.duration,
+          duration: formData?.duration * 10,
         },
         { withCredentials: true }
       );
       if (data) {
         alert('create workout sucessful!');
         setModalForm(null);
-        //update routine by navigate
         navigate(`/plan`);
       }
     } catch (error) {
@@ -49,7 +50,7 @@ function CreateWorkout({ setModalForm }) {
   return (
     <>
       <form className="workout-form" onSubmit={handleSubmit}>
-        <label>Routine name</label>
+        <label>Workout Name</label>
         <input
           className="form-input"
           name="workout_name"
