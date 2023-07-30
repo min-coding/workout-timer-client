@@ -28,7 +28,6 @@ function SignUp() {
         },
         { withCredentials: true }
       );
-      console.log(`im res ${res}`);
       if (res.status === 200) {
         alert(res.data.message);
         navigate('/signin');

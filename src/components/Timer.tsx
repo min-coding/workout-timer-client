@@ -23,7 +23,7 @@ function Timer({
     }
     if (timerStarted) {
       interval = setInterval(() => {
-        console.log(`Counting down time in setInterval! ${time}`);
+        // console.log(`Counting down time in setInterval! ${time}`);
         setTime((prev) => prev - 10);
       }, 1000);
 
@@ -31,7 +31,7 @@ function Timer({
         clearInterval(interval);
 
         if (currentWorkoutIndex < durationsArray.length - 1) {
-          console.log(`Before Current:${currentWorkoutIndex}`);
+          // console.log(`Before Current:${currentWorkoutIndex}`);
           setCurrentWorkoutIndex((prevIndex) => prevIndex + 1);
           setNextWorkoutIndex((prevIndex) => prevIndex + 1);
           speakNextWorkout(workoutNameArray[nextWorkoutIndex]);
