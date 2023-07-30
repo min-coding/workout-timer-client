@@ -69,7 +69,7 @@ function SignIn() {
         </div>
       </div>
       <div className="signin form-container">
-        <h1>Sign In ⏱</h1>
+        <h2>Sign In ⏱</h2>
         <form className="signin form-layout" onSubmit={handleSubmit}>
           <label>Email</label>
           <input
