@@ -37,7 +37,7 @@ button {
   padding: 2em;
 }
 
-.homepage-description{
+.homepage-description {
   font-weight: 300;
 }
 
@@ -314,7 +314,7 @@ span.icon-button-container:hover {
   width: 50%;
 }
 
-.form-container > h2 {
+.form-container > h1 {
   text-align: center;
 }
 
